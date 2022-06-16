@@ -15,6 +15,7 @@ def greet_user(name: str) -> str:
 
     # пиши код здесь
     greeting = f"Hello, {name}"
+
     return greeting
 
 
@@ -115,4 +116,5 @@ def create_request_for_loan(user_info: str) -> str:
 
     # пиши код здесь
     result = '\n'.join(f'{title}: {data}' for title, data in zip(['Фамилия', 'Имя', 'Отчество', 'Дата рождения', 'Запрошенная сумма'], user_info.split(',')))
+    
     return result
