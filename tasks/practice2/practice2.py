@@ -1,5 +1,4 @@
 from typing import Iterable
-from random import uniform
 
 UNCULTURED_WORDS = ('kotleta', 'pirog')
 
@@ -32,6 +31,8 @@ def get_amount() -> float:
     """
 
     # пиши код здесь
+    from random import uniform
+    
     amount = round(uniform(100, 1000000), 2)
 
     return amount
