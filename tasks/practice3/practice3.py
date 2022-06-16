@@ -27,8 +27,10 @@ def count_words(text: str) -> Dict[str, int]:
     """
 
     # пиши свой код здесь
+    words = ''.join(filter(lambda x: not '.,:\"\'()!@#$%^&*-=+_[]}\\|/'.count(x), text)).lower().split()
+    result = { word: words.count(word) for word in words if all('a' <= char and char <= 'z' for char in word) }
 
-    return {}
+    return result
 
 
 def exp_list(numbers: List[int], exp: int) -> List[int]:
@@ -41,8 +43,9 @@ def exp_list(numbers: List[int], exp: int) -> List[int]:
     """
 
     # пиши свой код здесь
+    result = list(map(lambda x: x ** exp, numbers))
 
-    return []
+    return result
 
 
 def get_cashback(operations: List[Dict[str, Any]], special_category: List[str]) -> float:
@@ -58,13 +61,9 @@ def get_cashback(operations: List[Dict[str, Any]], special_category: List[str]) 
     :return: размер кешбека
     """
 
-    res = 0
-    for x in operations:
-        if x['category'] in special_category:
-            res += x['amount'] * 0.05
-        else:
-            res += x['amount'] * 0.01
-    return res
+    result = sum(list(map(lambda x: x['amount'] * (0.05 if x['category'] in special_category else 0.01), operations)))
+
+    return result
 
 
 def get_path_to_file() -> Optional[Path]:
@@ -106,5 +105,11 @@ def csv_reader(header: str) -> int:
     """
 
     # пиши свой код здесь
+    import csv
 
-    return 0
+    with open(get_path_to_file()) as file:
+         table = list(csv.reader(file))
+         idx = table[0].index(header)
+         result = len(set([row[idx] for row in table[1:]]))
+
+    return result
